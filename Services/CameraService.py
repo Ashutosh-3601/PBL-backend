@@ -6,7 +6,7 @@ class CameraService:
         self.card = number
         self.delay = wait
 
-    def capture(self):
+    def capture(self) -> bool:
         try:
             # Start the Camera
             vid = cv2.VideoCapture(0)
@@ -22,6 +22,7 @@ class CameraService:
                 cv2.imshow('FRAME', frame)
 
                 # Get REGION OF INTEREST
+                # [y:y+h, x:x+w] <- not sure if this is format
                 ROI = frame[90:90+310, 128:128+371]
                 if cv2.waitKey(1) == ord('q'):
                     break;

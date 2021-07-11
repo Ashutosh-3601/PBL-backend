@@ -32,14 +32,14 @@ if facesLinkedWithCard is None:
 
 userFace = CameraService.CameraService(cardNumber, 10)
 captured = userFace.capture()
-if captured == False:
+if not captured:
     print(f'{CLR.CRED2}Error capturing your image!{CLR.CEND}')
+    exit(0)
 
 comparedList = []
 print(f'{CLR.CYELLOW}[Internal] Started Comparing Faces{CLR.CEND}')
 for img in facesLinkedWithCard['image']:
     location = img['location']
-    print(location)
     try:
         comp = CompareService.CompareImg()
         faceCompare = comp.compare(location, f'image/{cardNumber}.jpg')
