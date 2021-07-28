@@ -1,5 +1,5 @@
 import pymongo
-#import ssl
+import ssl
 
 class MongoStore:
     def __init__(self, url, ip = None, port = None) :
@@ -7,7 +7,7 @@ class MongoStore:
 
     def connect(self):
         try:
-           self.client = pymongo.MongoClient(self.connectionURL) #, ssl_cert_reqs = ssl.CERT_NONE)
+           self.client = pymongo.MongoClient(self.connectionURL, ssl_cert_reqs = ssl.CERT_NONE)
         except:
             raise RuntimeError('[MongoStore] Connection to DB failed!')
         
